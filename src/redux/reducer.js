@@ -1,16 +1,32 @@
+import * as types from "./actionTypes";
+
 const initialState = {
-    loading: false,
-    currentUser: null,
-    error: null
-}
+  loading: false,
+  currentUser: null,
+  error: null,
+};
 
 const userReducer = (state = initialState, action) => {
-    switch(action.type) {
+  switch (action.type) {
+    case types.REGISTER_START:
+      return {
+        ...state,
+        loading: true,
+      };
+    case types.REGISTER_SUCCESS:
+      return {
+        ...state,
+        currentUser: action.payload,
+      };
+    case types.REGISTER_FAIL:
+      return {
+        ...state,
+        error: action.payload,
+      };
 
+    default:
+      return state;
+  }
+};
 
-        default :
-        return state;
-    }
-}
-
-export default userReducer; 
+export default userReducer;

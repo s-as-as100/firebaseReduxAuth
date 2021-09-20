@@ -52,7 +52,7 @@ const Login = () => {
               }}
               onClick={handleFBSignIn}
             >
-              {" "}
+               
               FacebookSign
             </button>
           </div>

@@ -1,17 +1,54 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
+import { registerInitiate } from "../redux/action";
 import "./pages.css";
+
 const Register = () => {
-  const [state, setState] = useState({
-    email: "",
-    password: "",
-    name:"",
-    confirmPassword:""
-  });
-  const { email, password,name , confirmPassword} = state;
- 
-  const handleChange = () => {};
-  const handleSubmit = () => {};
+  //   const [state, setState] = useState({
+  //     email: "",
+  //     password: "",
+  //     name: "",
+  //     confirmPassword: "",
+  //   });
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, , setConfirmPassword] = useState("");
+  const [name, setName] = useState("");
+
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  //   const { email, password, name, confirmPassword } = state;
+
+  const { currentUSer } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    if (currentUSer) {
+      history.pushState("/");
+    }
+  }, [currentUSer, history]);
+
+  //   const handleChange = (e) => {
+  //     let { name, value } = e.target;
+  //     setState({ ...state, [name]: value });
+  //     console.log(setState(), " im log");
+  //   };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert("hello");
+    // if (password !== confirmPassword) {
+    //   return;
+    // }
+    dispatch(registerInitiate(email, password, name));
+    // setState({
+    //   email: "",
+    //   password: "",
+    //   name: "",
+    //   confirmPassword: "",
+    // });
+  };
   return (
     <div className=" container">
       <div className="login">
@@ -22,7 +59,8 @@ const Register = () => {
               className="inp"
               type="email"
               name="email"
-              onChange={handleChange}
+              onChange={(e) => setEmail(e.target.value)}
+              //   onChange={handleChange}
               value={email}
             />
           </div>
@@ -32,7 +70,7 @@ const Register = () => {
               className="inp"
               type="name"
               name="name"
-              onChange={handleChange}
+              onChange={(e) => setName(e.target.value)}
               value={name}
             />
           </div>
@@ -41,28 +79,28 @@ const Register = () => {
               className="inp"
               placeholder="password"
               type="password"
-              onChange={handleChange}
+              onChange={(e) => setPassword(e.target.value)}
               name="password"
               value={password}
             />
           </div>
-          <div>
+          {/* <div>
             <input
               className="inp"
               placeholder="Confirm password"
               type="password"
-              onChange={handleChange}
+              onChange={(e) => setConfirmPassword(e.target.value)}
               name="password"
               value={confirmPassword}
             />
-          </div>
+          </div> */}
           <div className="btn-login">
             <button className="both" type="submit">
               SignUp
             </button>
           </div>
           <div>
-              <Link to="/">Back to login</Link>
+            <Link to="/login">Back to login</Link>
           </div>
         </form>
       </div>
