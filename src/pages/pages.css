@@ -1,0 +1,29 @@
+.container {
+  min-height: 100vh; /* height of the browser viewport */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(245, 207, 207);
+}
+.login {
+    background-color: gray;
+    height: 50vh;
+    width: 50vw;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+
+.inp {
+    width: 100%;
+    padding: 10px 9px;
+    margin-bottom: 10px;
+}
+
+.both {
+    background: rgb(245, 207, 207);
+    padding: 6px 33px;
+    border-color: rgb(245, 207, 207);
+    margin-bottom: 10px;
+}
